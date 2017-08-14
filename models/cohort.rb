@@ -1,16 +1,17 @@
 class Cohort < Database::Model
-  def self.all
-    Database::Model.execute("SELECT * FROM cohorts").map do |row|
-      Cohort.new(row)
-    end
-  end
+  # def self.all
+  #   Database::Model.execute("SELECT * FROM cohorts").map do |row|
+  #     Cohort.new(row)
+  #   end
+  #   p self
+  # end
 
-  def self.create(attributes)
-    record = self.new(attributes)
-    record.save
+  # def self.create(attributes)
+  #   record = self.new(attributes)
+  #   record.save
 
-    record
-  end
+  #   record
+  # end
 
   def self.where(query, *args)
     Database::Model.execute("SELECT * FROM cohorts WHERE #{query}", *args).map do |row|
@@ -64,9 +65,9 @@ class Cohort < Database::Model
     students
   end
 
-  def new_record?
-    self[:id].nil?
-  end
+  # def new_record?
+  #   self[:id].nil?
+  # end
 
   # def save
   #   if new_record?

@@ -1,16 +1,16 @@
 class Student < Database::Model
-  def self.all
-    Database::Model.execute("SELECT * FROM students").map do |row|
-      Student.new(row)
-    end
-  end
+  # def self.all
+  #   Database::Model.execute("SELECT * FROM students").map do |row|
+  #     Student.new(row)
+  #   end
+  # end
 
-  def self.create(attributes)
-    record = self.new(attributes)
-    record.save
+  # def self.create(attributes)
+  #   record = self.new(attributes)
+  #   record.save
 
-    record
-  end
+  #   record
+  # end
 
   def self.where(query, *args)
     Database::Model.execute("SELECT * FROM students WHERE #{query}", *args).map do |row|
@@ -58,9 +58,9 @@ class Student < Database::Model
 
   # We say a record is "new" if it doesn't have a defined primary key in its
   # attributes
-  def new_record?
-    self[:id].nil?
-  end
+  # def new_record?
+  #   self[:id].nil?
+  # end
 
   # e.g., student['first_name'] #=> 'Steve'
   # def [](attribute)

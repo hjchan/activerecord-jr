@@ -115,6 +115,29 @@ module Database
       results
     end
 
+    def self.all
+      if (self==Cohort)
+        database = 'cohorts'
+      else
+        database = 'students'
+      end
+      p database
+      Database::Model.execute("SELECT * FROM #{database}").map do |row|
+        self.new(row)
+      end
+    end
+
+    def self.create(attributes)
+      record = self.new(attributes)
+      record.save
+
+      record
+    end
+
+    def new_record?
+      self[:id].nil?
+    end
+
     private
     def self.prepare_value(value)
       case value
